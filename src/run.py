@@ -6,6 +6,7 @@ from skimage.io import imread
 from util import *
 import csv
 from keras.preprocessing import image
+from keras.models import load_model
 
 def load(image_path):
 	#TODO:load image and process if you want to do any
@@ -45,13 +46,21 @@ class Predictor:
 	def predict(self, image_path):
 
 		img = load(image_path)
+		images_array = []
+		images_array.append(img)
+		images_array_np = np.array(images_array)
 
 		#TODO: load model
-
+		model = load_model('model_trained.h5')
 		#TODO: predict model and return result either in geolocation format or yearbook format
 		# depending on the dataset you are using
 		if self.DATASET_TYPE == 'geolocation':
 			result = self.streetview_baseline() #for geolocation
 		elif self.DATASET_TYPE == 'yearbook':
-			result = self.yearbook_baseline() #for yearbook
+			#result = self.yearbook_baseline() #for yearbook
+			result = model.predict(images_array_np)
+			result = result*(2013-1905) + 1905
+			result = np.squeeze(result)
+			result = np.round(result)
+			result = [result]
 		return result

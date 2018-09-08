@@ -5,7 +5,8 @@ from run import *
 from util import *
 
 SRC_PATH = path.dirname(path.abspath(__file__))
-DATA_PATH = path.join(SRC_PATH, '..', 'data')
+#DATA_PATH = path.join(SRC_PATH, '..', 'data')
+DATA_PATH = "/Users/aashishkumar/Documents/MS_3rd_Sem/Deep_Learning_Seminar"
 YEARBOOK_PATH = path.join(DATA_PATH, 'yearbook')
 YEARBOOK_VALID_PATH = path.join(YEARBOOK_PATH, 'valid')
 YEARBOOK_TEST_PATH = path.join(YEARBOOK_PATH, 'test')
@@ -58,6 +59,7 @@ def evaluateYearbook(Predictor):
     truth_year = int(image_gr_truth[1])
     l1_dist += abs(pred_year[0] - truth_year)
     count=count+1
+    print(count)
 
   l1_dist /= total_count
   print( "L1 distance", l1_dist)
@@ -144,4 +146,3 @@ if __name__ == "__main__":
   else:
     print("Unknown dataset type '%s'", Predictor.DATASET_TYPE)
     exit(1)
-    

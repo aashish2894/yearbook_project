@@ -84,7 +84,8 @@ model.add(Dense(1,))
 epochs = 10
 batch_size = 128
 adam = optimizers.Adam(lr=0.001)
-model.compile(loss='mean_squared_error', optimizer=adam, metrics=[r_square])
+model.compile(loss='mean_squared_error', optimizer=adam)
+#model.compile(loss='mean_squared_error', optimizer=adam, metrics=[r_square])
 print(model.summary())
 
 checkpointer = ModelCheckpoint(filepath="weights.hdf5", verbose=1, save_best_only=True)
@@ -108,20 +109,20 @@ submission = pd.concat([true_labels,test_output_label],axis = 1)
 
 submission.to_csv("neural_network2.csv",index=False)
 
-# del model
-# model = load_model('model_trained.h5')
-#
-# test_output = model.predict(X_val)
-# print(test_output)
-# print(test_output.shape)
-# test_output_label = test_output*(2013-1905) + 1905
-# test_output_label = np.squeeze(test_output_label)
-# test_output_label = np.round(test_output_label)
-# list = util.listYearbook(False,True)
-# true_labels = np.array([float(y[1]) for y in list])
-# print('R squared Saved Model: ',r_square_np(true_labels,test_output_label))
-# test_output_label = pd.Series(test_output_label,name="Label")
-# true_labels = pd.Series(true_labels,name="True_Label")
-# submission = pd.concat([true_labels,test_output_label],axis = 1)
-#
-# submission.to_csv("neural_network_saved_model.csv",index=False)
+del model
+model = load_model('model_trained.h5')
+
+test_output = model.predict(X_val)
+print(test_output)
+print(test_output.shape)
+test_output_label = test_output*(2013-1905) + 1905
+test_output_label = np.squeeze(test_output_label)
+test_output_label = np.round(test_output_label)
+list = util.listYearbook(False,True)
+true_labels = np.array([float(y[1]) for y in list])
+print('R squared Saved Model: ',r_square_np(true_labels,test_output_label))
+test_output_label = pd.Series(test_output_label,name="Label")
+true_labels = pd.Series(true_labels,name="True_Label")
+submission = pd.concat([true_labels,test_output_label],axis = 1)
+
+submission.to_csv("neural_network_saved_model.csv",index=False)
