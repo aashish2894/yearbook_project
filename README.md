@@ -2,7 +2,7 @@
 This is code for implementing yearbook project. It has code for geolocation project too but only yearbook project is done.
 
 ## Dependencies
- * python (tested with python2.7)
+ * python
  * numpy
  * sklearn
  * matplotlib + basemap
