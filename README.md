@@ -1,5 +1,5 @@
-# Yearbook/ Geolocation
-This is a starter fore for implementing yearbook or geolocation project.
+# Yearbook
+This is code for implementing yearbook project. It has code for geolocation project too but only yearbook project is done.
 
 ## Dependencies
  * python (tested with python2.7)
@@ -25,17 +25,6 @@ data
 		yearbook_train.txt
 		yearbook_valid.txt
 		yearbook_test.txt
-	geo
-		train
-			000001.JPG
-			...
-		valid
-			...
-		test
-			...
-		geo_train.txt
-		geo_valid.txt
-		geo_test.txt
 model
 	TODO: put your final model file in the folder
 src
@@ -44,14 +33,13 @@ src
 	run.py
 	util.py
 output
-	TODO: output the yearbook/geo test file
-	geo_test_label.txt
+	TODO: output the yearbook test file
 	yearbook_test_label.txt
 ```
 
 ## Evaluation
 ### Data setup
-Download the data from the link and store it in data folder as described in the folder structure.
+Download the data from the link http://www.cs.utexas.edu/~philkr/cs395t/yearbook.zip and store it in data folder as described in the folder structure.
 
 ### Models
 Train the model and put the model in the `Model` folder
